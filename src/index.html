@@ -5,20 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-        connect-src 'self' 
-            https://*.supabase.co 
-            https://*.weaviate.cloud 
-            wss://*.supabase.co
-            https://*.googleapis.com 
-            https://generativelanguage.googleapis.com 
-            http://localhost:5000
-            https://*.redns.redis-cloud.com;
-        img-src 'self' data: https://upload.wikimedia.org;
-        font-src 'self' https://fonts.gstatic.com;
-    ">
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+        https://cdn.jsdelivr.net 
+        https://www.googletagmanager.com 
+        https://esm.run;
+    style-src 'self' 'unsafe-inline' 
+        https://fonts.googleapis.com 
+        https://cdn.jsdelivr.net;
+    connect-src 'self' 
+        https://*.supabase.co 
+        https://*.weaviate.cloud 
+        wss://*.supabase.co
+        https://*.googleapis.com 
+        https://generativelanguage.googleapis.com 
+        http://localhost:5000
+        https://*.redns.redis-cloud.com;
+    img-src 'self' data: https://upload.wikimedia.org;
+    font-src 'self' https://fonts.gstatic.com;
+">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <title>WormGPT, by Hecabrus</title>
