@@ -9,7 +9,7 @@ import * as helpers from "../utils/helpers.js";
 import { supabaseService } from './database/SupabaseService';
 import { redisService } from './database/RedisService';
 import { userService } from './User.service.js';
-import { weaviateService } from './database/WeaviateService';
+import { weaviateService } from './database/WeaviateService.js';
 import { chatLimitService } from './database/ChatLimitService.js';
 
 async function generateEmbedding(text) {
