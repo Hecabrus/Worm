@@ -1,5 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import obfuscator from 'rollup-plugin-obfuscator';
+import fs from 'fs';
+import path from 'path';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '')
@@ -12,22 +14,14 @@ export default defineConfig(({ mode }) => {
             emptyOutDir: true,
             sourcemap: false,
             minify: true,
-            cssMinify: true,
-            rollupOptions: {
-                output: {
-                    manualChunks: undefined
-                }
-            }
-        },
-        optimizeDeps: {
-            include: ['weaviate-ts-client']
+            cssMinify: true
         },
         envPrefix: 'VITE_',
         server: {
             port: 3000,
             proxy: {
                 '/api': {
-                    target: env.VITE_API_URL,
+                    target: process.env.VITE_API_URL,
                     changeOrigin: true,
                     secure: false
                 }
@@ -36,6 +30,11 @@ export default defineConfig(({ mode }) => {
                 origin: true,
                 methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
                 credentials: true
+            },
+            headers: {
+                'X-Frame-Options': 'DENY',
+                'X-Content-Type-Options': 'nosniff',
+                'X-XSS-Protection': '1; mode=block'
             }
         }
     }
