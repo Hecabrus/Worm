@@ -5,7 +5,13 @@ class SupabaseService {
     constructor() {
         this.client = createClient(
             DATABASE_CONFIG.SUPABASE.url,
-            DATABASE_CONFIG.SUPABASE.apiKey
+            DATABASE_CONFIG.SUPABASE.apiKey,
+            {
+                auth: {
+                    autoRefreshToken: true,
+                    persistSession: true
+                }
+            }
         );
     }
 
