@@ -10,11 +10,25 @@ let html = readFileSync(indexFile, 'utf8');
 const csp = `
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://*.googleapis.com https://www.googletagmanager.com https://esm.run https://www.google-analytics.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
-        img-src 'self' data: https://*.wikimedia.org https://64.media.tumblr.com;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+            https://cdn.jsdelivr.net 
+            https://*.googleapis.com 
+            https://www.googletagmanager.com 
+            https://esm.run;
+        style-src 'self' 'unsafe-inline' 
+            https://fonts.googleapis.com 
+            https://cdn.jsdelivr.net;
+        img-src 'self' data: 
+            https://*.wikimedia.org 
+            https://64.media.tumblr.com;
         font-src 'self' https://fonts.gstatic.com;
-        connect-src 'self' https://*.supabase.co https://*.weaviate.cloud https://*.googleapis.com https://www.google-analytics.com https://generativelanguage.googleapis.com http://localhost:5000;
+        connect-src 'self' 
+            https://*.supabase.co 
+            https://*.weaviate.cloud 
+            https://*.googleapis.com 
+            https://www.google-analytics.com 
+            https://generativelanguage.googleapis.com 
+            http://localhost:5000;
     ">
 `;
 
