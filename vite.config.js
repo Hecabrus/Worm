@@ -14,14 +14,19 @@ export default defineConfig(({ mode }) => {
             emptyOutDir: true,
             sourcemap: false,
             minify: true,
-            cssMinify: true
+            cssMinify: true,
+            rollupOptions: {
+                output: {
+                    manualChunks: undefined
+                }
+            }
         },
         envPrefix: 'VITE_',
         server: {
             port: 3000,
             proxy: {
                 '/api': {
-                    target: process.env.VITE_API_URL,
+                    target: env.VITE_API_URL,
                     changeOrigin: true,
                     secure: false
                 }
@@ -32,9 +37,33 @@ export default defineConfig(({ mode }) => {
                 credentials: true
             },
             headers: {
+                'Content-Security-Policy': `
+                    default-src 'self';
+                    script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+                        https://cdn.jsdelivr.net 
+                        https://*.googleapis.com 
+                        https://www.googletagmanager.com 
+                        https://esm.run;
+                    style-src 'self' 'unsafe-inline' 
+                        https://fonts.googleapis.com 
+                        https://cdn.jsdelivr.net;
+                    img-src 'self' data: 
+                        https://*.wikimedia.org 
+                        https://64.media.tumblr.com;
+                    font-src 'self' https://fonts.gstatic.com;
+                    connect-src 'self' 
+                        https://*.supabase.co 
+                        https://*.weaviate.cloud 
+                        https://*.googleapis.com 
+                        https://www.google-analytics.com 
+                        https://generativelanguage.googleapis.com 
+                        http://localhost:5000;
+                `,
                 'X-Frame-Options': 'DENY',
                 'X-Content-Type-Options': 'nosniff',
-                'X-XSS-Protection': '1; mode=block'
+                'X-XSS-Protection': '1; mode=block',
+                'Referrer-Policy': 'strict-origin-when-cross-origin',
+                'Permissions-Policy': 'geolocation=(), microphone=(), camera=()'
             }
         }
     }
