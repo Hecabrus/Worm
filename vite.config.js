@@ -18,7 +18,19 @@ export default defineConfig(({ mode }) => {
         },
         envPrefix: 'VITE_',
         server: {
-            port: 3000
+            port: 3000,
+            proxy: {
+                '/api': {
+                    target: process.env.VITE_API_URL,
+                    changeOrigin: true,
+                    secure: false
+                }
+            },
+            cors: {
+                origin: true,
+                methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+                credentials: true
+            }
         }
     }
 })
