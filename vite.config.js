@@ -43,6 +43,7 @@ export default defineConfig(({ mode }) => {
                         https://cdn.jsdelivr.net 
                         https://*.googleapis.com 
                         https://www.googletagmanager.com 
+                        https://www.google-analytics.com
                         https://esm.run;
                     style-src 'self' 'unsafe-inline' 
                         https://fonts.googleapis.com 
@@ -57,9 +58,9 @@ export default defineConfig(({ mode }) => {
                         https://*.googleapis.com 
                         https://www.google-analytics.com 
                         https://generativelanguage.googleapis.com 
+                        https://analytics.google.com
                         http://localhost:5000;
                 `,
-                'X-Frame-Options': 'DENY',
                 'X-Content-Type-Options': 'nosniff',
                 'X-XSS-Protection': '1; mode=block',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
